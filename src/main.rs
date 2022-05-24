@@ -1,20 +1,31 @@
-use rust_wordle;
+use rust_wordle::CurrentGame;
 use std::io::stdin;
 
 fn main() {
     let mut guess = String::new();
-    let selected_word = rust_wordle::select_random_word();
 
-    println!("Selected word: {}", selected_word);
+    let current_game = CurrentGame::new().unwrap();
+
+    println!("Current game: {:?}", current_game);
 
     stdin()
         .read_line(&mut guess)
         .expect("Failed to read user input");
 
-    println!(
-        "Your guess is: {}\nThe word is: {}\nIt's equal? {:?}",
-        guess,
-        selected_word,
-        (selected_word.eq(&guess.trim()))
-    )
+    // println!(
+    //     "Is {:?} equal to {:?}: {:?}",
+    //     &guess.trim(),
+    //     current_game.selected_word,
+    //     current_game.selected_word.eq(guess.trim())
+    // );
+
+    for iter in 0..5 {
+        todo!()
+        // CHECAR SE CHAR SLW[0] === GSS[0]
+        // SE TRUE:
+        // VALID_LETTERS.PUSH((LETTER, ITER))
+        // SE FALSE:
+        // SE A SLW.CONTAINS(GSS[0]):
+        // VALID
+    }
 }
