@@ -12,7 +12,7 @@ pub struct CurrentGame {
     pub tried_words: Vec<&'static str>,
     pub remaining_trials: i8,
     pub is_completed: bool,
-    pub valid_letters: Vec<char>,
+    pub valid_letters: Vec<(char, usize, bool)>,
     pub invalid_letters: Vec<char>,
 }
 

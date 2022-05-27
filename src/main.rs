@@ -4,7 +4,7 @@ use std::io::stdin;
 fn main() {
     let mut guess = String::new();
 
-    let current_game = CurrentGame::new().unwrap();
+    let mut current_game = CurrentGame::new().unwrap();
 
     println!("Current game: {:?}", current_game);
 
@@ -12,20 +12,20 @@ fn main() {
         .read_line(&mut guess)
         .expect("Failed to read user input");
 
-    // println!(
-    //     "Is {:?} equal to {:?}: {:?}",
-    //     &guess.trim(),
-    //     current_game.selected_word,
-    //     current_game.selected_word.eq(guess.trim())
-    // );
-
     for iter in 0..5 {
-        todo!()
-        // CHECAR SE CHAR SLW[0] === GSS[0]
-        // SE TRUE:
-        // VALID_LETTERS.PUSH((LETTER, ITER))
-        // SE FALSE:
-        // SE A SLW.CONTAINS(GSS[0]):
-        // VALID
+        let original_char = current_game.selected_word.chars().nth(iter).unwrap();
+        let guess_char = guess.chars().nth(iter).unwrap();
+
+        if original_char == guess_char {
+            current_game.valid_letters.push((guess_char, iter, true))
+        } else if original_char != guess_char {
+            if current_game.selected_word.contains(guess_char) {
+                current_game.valid_letters.push((guess_char, iter, false))
+            } else {
+                current_game.invalid_letters.push(guess_char);
+            }
+        }
     }
+
+    println!("Current game: {:?}", current_game);
 }
